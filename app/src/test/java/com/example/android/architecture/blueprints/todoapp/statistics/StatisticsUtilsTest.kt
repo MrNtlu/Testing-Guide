@@ -6,17 +6,25 @@ import org.hamcrest.Matchers.`is`
 import org.junit.Assert.*
 import org.junit.Test
 
-/**
+/** TESTING NOTES
  * implementation—The dependency is available in all source sets, including the test source sets.
  * testImplementation—The dependency is only available in the test source set.
  * androidTestImplementation—The dependency is only available in the androidTest source set.
+ *
+ * Unit tests are focused and fast.
+ * Integration tests verify interaction between parts of your program.
+ * End-to-end tests verify features, have the highest fidelity, are often instrumented, and may take longer to run.
+ *
+ * Use dependency injection to replace a real class with a testing class, for example, a repository or a networking layer.
+ *
+ * Use instrumented testing (androidTest) to launch UI components.
  *
  * Suggested test naming `subjectUnderTest_actionOrInput_resultState`
  */
 class StatisticsUtilsTest {
     // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics#7
-    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles?hl=en#9
-    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-survey
+    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles
+    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-survey#2
     // https://github.com/googlecodelabs/android-testing/blob/end_codelab_3/app/build.gradle
     // https://github.com/googlecodelabs/android-testing/blob/end_codelab_3/build.gradle
 
