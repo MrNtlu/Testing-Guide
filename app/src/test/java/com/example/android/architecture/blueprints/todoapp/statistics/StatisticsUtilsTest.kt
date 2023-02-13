@@ -24,7 +24,7 @@ import org.junit.Test
 class StatisticsUtilsTest {
     // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics#7
     // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles
-    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-survey#2
+    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-survey#4
     // https://github.com/googlecodelabs/android-testing/blob/end_codelab_3/app/build.gradle
     // https://github.com/googlecodelabs/android-testing/blob/end_codelab_3/build.gradle
 

@@ -1,9 +1,8 @@
-package com.example.android.architecture.blueprints.todoapp
+package com.example.android.architecture.blueprints.todoapp.data.source
 
+import com.example.android.architecture.blueprints.todoapp.MainCoroutineRule
 import com.example.android.architecture.blueprints.todoapp.data.Result
 import com.example.android.architecture.blueprints.todoapp.data.Task
-import com.example.android.architecture.blueprints.todoapp.data.source.DefaultTasksRepository
-import com.example.android.architecture.blueprints.todoapp.data.source.FakeDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -11,9 +10,14 @@ import org.hamcrest.core.IsEqual
 import org.junit.Before
 import org.junit.Test
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Rule
 
 @ExperimentalCoroutinesApi
 class DefaultTasksRepositoryTest {
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
+
     private val task1 = Task("Title1", "Description1")
     private val task2 = Task("Title2", "Description2")
     private val task3 = Task("Title3", "Description3")
@@ -43,7 +47,7 @@ class DefaultTasksRepositoryTest {
      * Use runBlockingTest in your test classes when you're calling a suspend function.
      */
     @Test
-    fun getTasks_requestsAllTasksFromRemoteDataSource() = runBlockingTest{
+    fun getTasks_requestsAllTasksFromRemoteDataSource() = mainCoroutineRule.runBlockingTest{
         // When tasks are requested from the tasks repository
         val tasks = tasksRepository.getTasks(true) as Result.Success
 
