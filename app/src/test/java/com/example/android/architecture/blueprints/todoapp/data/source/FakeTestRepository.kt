@@ -5,15 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import com.example.android.architecture.blueprints.todoapp.data.Result
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import kotlinx.coroutines.runBlocking
+import com.example.android.architecture.blueprints.todoapp.data.Result.Error
+import com.example.android.architecture.blueprints.todoapp.data.Result.Success
 
 class FakeTestRepository: TasksRepository {
     var tasksServiceData: LinkedHashMap<String, Task> = LinkedHashMap()
 
     private val observableTasks = MutableLiveData<Result<List<Task>>>()
-
-    override suspend fun getTasks(forceUpdate: Boolean): Result<List<Task>> {
-        return Result.Success(tasksServiceData.values.toList())
-    }
+    private var shouldReturnError = false
 
     override suspend fun refreshTasks() {
         observableTasks.value = getTasks()
@@ -40,6 +39,10 @@ class FakeTestRepository: TasksRepository {
         runBlocking { refreshTasks() }
     }
 
+    fun setReturnError(value: Boolean) {
+        shouldReturnError = value
+    }
+
     override suspend fun refreshTask(taskId: String) {
         TODO("Not yet implemented")
     }
@@ -49,7 +52,20 @@ class FakeTestRepository: TasksRepository {
     }
 
     override suspend fun getTask(taskId: String, forceUpdate: Boolean): Result<Task> {
-        TODO("Not yet implemented")
+        if (shouldReturnError) {
+            return Result.Error(Exception("Test exception"))
+        }
+        tasksServiceData[taskId]?.let {
+            return Result.Success(it)
+        }
+        return Error(Exception("Could not find task"))
+    }
+
+    override suspend fun getTasks(forceUpdate: Boolean): Result<List<Task>> {
+        if (shouldReturnError) {
+            return Error(Exception("Test exception"))
+        }
+        return Success(tasksServiceData.values.toList())
     }
 
     override suspend fun saveTask(task: Task) {
