@@ -22,11 +22,9 @@ import org.junit.Test
  * Suggested test naming `subjectUnderTest_actionOrInput_resultState`
  */
 class StatisticsUtilsTest {
-    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics#7
+    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics
     // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles
-    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-survey#7
-    // https://github.com/googlecodelabs/android-testing/blob/end_codelab_3/app/build.gradle
-    // https://github.com/googlecodelabs/android-testing/blob/end_codelab_3/build.gradle
+    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-survey
 
     @Test
     fun getActiveAndCompletedStats_noCompleted_returnsHundredZero() {
